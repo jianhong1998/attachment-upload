@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { S3, config } from 'aws-sdk';
+import { randomUUID } from 'crypto';
 
 @Injectable()
 export class AttachmentUtil {
@@ -26,7 +27,7 @@ export class AttachmentUtil {
     public createPresignUrl(fileName: string, fileType: string): string {
         const params = {
             Bucket: this.bucketName,
-            Key: fileName,
+            Key: `${fileName}`,
             Expires: 120,
             ContentType: fileType,
             ACL: 'bucket-owner-full-control',
@@ -35,5 +36,11 @@ export class AttachmentUtil {
         const url = this.s3.getSignedUrl('putObject', params);
 
         return url;
+    }
+
+    public generateFileName(extension: string, prefix?: string): string {
+        const uuid = randomUUID().split('-').join('');
+
+        return `${prefix ? `${prefix}_` : ''}${uuid}.${extension}`;
     }
 }

@@ -16,7 +16,10 @@ export class AttachmentController {
             );
         }
 
-        const url = this.attachmentService.getUploadUrl(fileName, fileType);
+        const url = await this.attachmentService.getUploadUrl(
+            fileName,
+            fileType,
+        );
 
         return { url };
     }

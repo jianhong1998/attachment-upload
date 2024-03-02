@@ -6,6 +6,16 @@ export class AttachmentService {
     constructor(private attachmentUtil: AttachmentUtil) {}
 
     public async getUploadUrl(fileName: string, fileType: string) {
-        return this.attachmentUtil.createPresignUrl(fileName, fileType);
+        const stringArray = fileName.split('.');
+
+        const fileExtension = stringArray[stringArray.length - 1];
+
+        const generatedFileName =
+            this.attachmentUtil.generateFileName(fileExtension);
+
+        return this.attachmentUtil.createPresignUrl(
+            generatedFileName,
+            fileType,
+        );
     }
 }
