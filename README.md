@@ -6,7 +6,7 @@ To proof the concept of uploading large attachment file such as video with direc
 
 1. Node >= 18
 2. AWS S3 bucket created
-3. S3 bucket configure with CORS policy for PUT request
+3. S3 bucket configured with CORS policy for PUT request
 
 ## Library Used
 
