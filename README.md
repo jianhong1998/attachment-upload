@@ -5,6 +5,11 @@
 1. Node >= 18
 2. AWS S3 bucket created
 
+## Library Used
+
+1. `NestJS`: Express framework.
+2. `aws-sdk`: Library for the backend to communicate with AWS S3.
+
 ## Start Locally
 
 ### Backend
